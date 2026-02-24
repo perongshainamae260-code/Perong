@@ -1,0 +1,16 @@
+def num()
+  A = int(input(f" Enter your first number: "))
+  B = int(intput(f" Enter your second number: "))
+  C = int(input(f" Enter your third number: "))
+
+  if A > B and A > c:
+    print (f" Letter A is the Closest number with the value of {A}")
+  elif B > C and B > A:
+    print (f" Letter B is the Closest number with the value of {B}")
+  elif C > B and C > A:
+    print (f" Letter C is the Closest number with the value of {C}")
+  elif A == B and B == C:
+    print(f" Letter A, B and C have the same value of {A}")
+  else:
+    print(f"Try Again.")
+num()
