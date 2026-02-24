@@ -1,0 +1,14 @@
+fullname = "Shaina Mae Perong"  
+age = 18  
+height = 1.57  
+currently_working = False  # Boolean
+
+print("Fullname (String)")
+print("Age (Integer)")
+print("Height in meters (Float)")
+print("Currently working? (Boolean)")
+
+print(f"\nFullname: {fullname}, Type: {type(fullname)}")
+print(f"Age: {age}, Type: {type(age)}")
+print(f"Height in meters: {height}, Type: {type(height)}")
+print(f"Currently working?: {currently_working}, Type: {type(currently_working)}")
