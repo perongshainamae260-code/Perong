@@ -1,0 +1,12 @@
+while True:
+    password = input("Enter a password: ")
+
+    has_letter = any(c.isalpha() for c in password)
+
+    has_digit = any(c.isdigit() for c in password)
+
+    if has_letter and has_digit:
+        print("Password accepted.")
+        break                     # exit the loop
+    else:
+        print("Invalid password. Try again.")
