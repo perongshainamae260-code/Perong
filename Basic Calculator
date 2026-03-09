@@ -1,0 +1,36 @@
+def calc(a, op, b):
+    if op == '+': return a + b
+    if op == '-': return a - b
+    if op == '*': return a * b
+    if op == '/':
+        if b == 0:
+            raise ZeroDivisionError("division by zero")
+        return a / b
+    raise ValueError("unknown operator")
+
+def main():
+    print("Simple Calculator. Enter expressions like: 2 + 3")
+    print("Type 'q' to quit.")
+    while True:
+        s = input("> ").strip()
+        if s.lower() in ('q','quit','exit'):
+            print("Goodbye.")
+            break
+        parts = s.split()
+        if len(parts) != 3:
+            print("Use: number operator number (e.g. 4 * 5)")
+            continue
+        try:
+            a = float(parts[0])
+            op = parts[1]
+            b = float(parts[2])
+            r = calc(a, op, b)
+            # show integers without .0
+            if r == int(r):
+                r = int(r)
+            print("Result:", r)
+        except Exception as e:
+            print("Error:", e)
+
+if __name__ == "__main__":
+    main()
