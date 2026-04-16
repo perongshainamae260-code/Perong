@@ -1,69 +1,44 @@
-def create_message_file():
-    try:
-        with open("message.txt", "x") as file:
-            print("✓ Success! message.txt file created successfully.")
-    except FileExistsError:
-        print("✗ Error: message.txt file already exists.")
-    except Exception as e:
-        print(f"✗ Error: An unexpected error occurred: {e}")
-
-
-def send_message():
-    """Append a message to the file"""
-    try:
-        message = input("Enter your message: ")
-        with open("message.txt", "a") as file:
-            file.write(message + "\n")
-        print("✓ Message sent successfully!")
-    except FileNotFoundError:
-        print("✗ Error: message.txt file not found. Please create the file first.")
-    except Exception as e:
-        print(f"✗ Error: An unexpected error occurred: {e}")
-
-
-def view_messages():
-    """Read and display all messages from the file"""
-    try:
-        with open("message.txt", "r") as file:
-            contents = file.read()
-            if contents:
-                print("\n--- All Messages ---")
-                print(contents)
-                print("--- End of Messages ---\n")
-            else:
-                print("No messages found in the file.")
-    except FileNotFoundError:
-        print("✗ Error: message.txt file not found. Please create the file first.")
-    except Exception as e:
-        print(f"✗ Error: An unexpected error occurred: {e}")
-
-
-def display_menu():
-    """Display the main menu"""
-    print("\n=== Message Management System ===")
-    print("1. Send a message")
-    print("2. View all messages")
-    print("3. Exit")
-    print("==================================")
-
-
 def main():
-    """Main program loop"""
-    create_message_file()
-    
+    try:
+        with open("message.txt", "x"):
+            print("Success! message.txt file created successfully.")
+    except FileExistsError:
+        print("Error: message.txt file already exists.")
+    except Exception as e:
+        print(f"Error: {e}")
+
     while True:
-        display_menu()
+        print("\n1. Send a message\n2. View all messages\n3. Exit")
         choice = input("Enter your choice (1-3): ").strip()
-        
         if choice == "1":
-            send_message()
+            try:
+                m = input("Enter your message: ").strip()
+                if not m:
+                    raise ValueError("Message cannot be empty.")
+                with open("message.txt", "a") as f:
+                    f.write(m + "\n")
+                print("Message sent successfully!")
+            except FileNotFoundError:
+                print("Error: message.txt file not found.")
+            except Exception as e:
+                print("Error: {e}")
         elif choice == "2":
-            view_messages()
+            try:
+                with open("message.txt", "r") as f:
+                    t = f.read().strip()
+                if t:
+                    print(f"\nAll Messages\n{t}\nEnd of Messages\n")
+                else:
+                    print("\nAll Messages\n{'No messages found in message.txt.'}\nEnd of Messages\n")
+            except FileNotFoundError:
+                print("Error: message.txt file not found.")
+            except Exception as e:
+                print("Error: {e}")
         elif choice == "3":
-            print("✓ Goodbye!")
+            print("Sayonara!")
             break
         else:
-            print("✗ Error: Invalid choice. Please enter 1, 2, or 3.")
+            print("Error: Invalid choice.")
 
 
 if __name__ == "__main__":
